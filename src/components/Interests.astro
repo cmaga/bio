@@ -1,0 +1,35 @@
+---
+const interests = [
+  {
+    label: "01 — GAMING",
+    body: "A way to connect with friends and have fun — primarily competitive games.",
+  },
+  {
+    label: "02 — RACING",
+    body: "Love cars. Go-karting is always a blast. I drive whenever I can and catch the occasional F1 weekend. Favorite game: Gran Turismo. Sim rig at home.",
+  },
+  {
+    label: "03 — INVESTING",
+    body: "No Warren Buffet, but finance and investing have always fascinated me. Always reading.",
+  },
+];
+---
+
+<section id="interests" class="py-24">
+  <div class="eyebrow mb-4"><span class="mark">◈</span> 03 / INTERESTS</div>
+  <h2
+    class="text-4xl md:text-6xl text-[var(--white)] font-light tracking-tight mb-12"
+  >
+    Beyond the keyboard.
+  </h2>
+  <div class="grid md:grid-cols-3 gap-5">
+    {
+      interests.map((i) => (
+        <div class="card">
+          <div class="card-num mb-4">{i.label}</div>
+          <p class="text-base leading-relaxed font-light">{i.body}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Christopher Magana — Software Engineer",
+  description = "Software engineer building resilient systems — from embedded robotics to production-scale infrastructure.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Software Engineer, Python, C++, Machine Learning, Deep Learning, Startups, Agile, Embedded Systems, Robotics"
+    />
+    <meta name="author" content="Christopher Magana" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <link rel="icon" type="image/png" href="/img/icon.png" />
+    <link rel="canonical" href={Astro.url.href} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen">
+    <slot />
+  </body>
+</html>

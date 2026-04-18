@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Highlights from "../components/Highlights.astro";
+import Interests from "../components/Interests.astro";
+import Mission from "../components/Mission.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+  <Nav variant="home" />
+  <main class="mx-auto max-w-6xl px-6 pb-24">
+    <Hero />
+    <div class="divider my-8"></div>
+    <About />
+    <div class="divider my-8"></div>
+    <Highlights />
+    <div class="divider my-8"></div>
+    <Interests />
+    <div class="divider my-8"></div>
+    <Mission />
+    <div class="divider my-8"></div>
+    <Contact />
+    <Footer />
+  </main>
+</Layout>

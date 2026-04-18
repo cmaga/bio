@@ -1,0 +1,261 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #030712;
+  --color-bg-deep: #000000;
+  --color-bg-panel: rgb(17 24 39 / 0.5);
+  --color-ink: #e5e7eb;
+  --color-ink-bright: #f8fafc;
+  --color-muted: #94a3b8;
+  --color-dim: #334155;
+  --color-border: rgb(148 163 184 / 0.15);
+  --color-blue: #60a5fa;
+  --color-amber: #f59e0b;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+}
+
+:root {
+  --bg: #030712;
+  --bg-deep: #000000;
+  --bg-panel: rgba(17, 24, 39, 0.5);
+  --text: #e5e7eb;
+  --white: #f8fafc;
+  --muted: #94a3b8;
+  --dim: #334155;
+  --blue: #60a5fa;
+  --blue-deep: #1e40af;
+  --amber: #f59e0b;
+  --amber-glow: #fbbf24;
+  --border: rgba(148, 163, 184, 0.15);
+}
+
+html, body {
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 300;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 20% -10%, rgb(96 165 250 / 0.12), transparent 50%),
+    radial-gradient(ellipse at 80% 110%, rgb(245 158 11 / 0.06), transparent 50%),
+    radial-gradient(ellipse at 50% 50%, #050912, var(--bg-deep) 70%);
+  min-height: 100vh;
+}
+
+/* Starfield overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 80% 20%, white, transparent),
+    radial-gradient(1.5px 1.5px at 30% 80%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 70% 50%, white, transparent),
+    radial-gradient(1px 1px at 15% 60%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 90% 85%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 45% 15%, white, transparent),
+    radial-gradient(1px 1px at 5% 90%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 95% 40%, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 1200px 800px;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Subtle grain */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  z-index: 2;
+  mix-blend-mode: overlay;
+}
+
+main, header, footer, nav { position: relative; z-index: 10; }
+
+::selection { background: var(--amber); color: var(--bg); }
+
+.mono { font-family: "Space Mono", ui-monospace, monospace; }
+
+.eyebrow {
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.eyebrow .mark {
+  color: var(--amber);
+  margin-right: 0.5rem;
+}
+
+.hero-title {
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+.hero-title .lastname {
+  font-weight: 600;
+  background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chip {
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.6rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  border: 1px solid var(--white);
+  color: var(--white);
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+.btn:hover { background: var(--white); color: var(--bg); }
+
+.btn-ghost {
+  border-color: var(--dim);
+  color: var(--muted);
+}
+.btn-ghost:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: transparent;
+}
+
+.card {
+  background: var(--bg-panel);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.card:hover { border-color: rgba(148, 163, 184, 0.3); }
+
+.card-num {
+  font-family: "Space Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--amber);
+}
+
+.link-inline {
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+  transition: all 0.2s;
+}
+.link-inline:hover {
+  color: var(--amber);
+  border-bottom-color: var(--amber);
+}
+
+.nav-link {
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: var(--white); }
+.nav-link.active { color: var(--white); }
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--dim), transparent);
+}
+
+.coord {
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}
+
+/* Portrait with orbit rings */
+.portrait-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: grid;
+  place-items: center;
+}
+.portrait-wrap::before,
+.portrait-wrap::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  pointer-events: none;
+}
+.portrait-wrap::before {
+  inset: -20px;
+  border-color: rgba(96, 165, 250, 0.25);
+}
+.portrait-wrap::after {
+  inset: -40px;
+  border-color: rgba(245, 158, 11, 0.15);
+  border-style: dashed;
+}
+.portrait {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: contrast(1.05) brightness(0.95);
+  box-shadow:
+    0 0 60px rgba(96, 165, 250, 0.25),
+    0 0 120px rgba(245, 158, 11, 0.08);
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.orbit-marker {
+  position: absolute;
+  inset: -40px;
+  animation: orbit 30s linear infinite;
+  pointer-events: none;
+}
+.orbit-marker::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--amber);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-marker { animation: none; }
+}

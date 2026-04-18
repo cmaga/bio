@@ -1,0 +1,41 @@
+---
+const skills = ["Python", "C++", "Machine Learning", "Embedded", "Robotics"];
+---
+
+<section class="min-h-[88vh] flex flex-col justify-center py-20">
+  <div class="eyebrow mb-6">
+    <span class="mark">◈</span> 42.2626° N, 71.8023° W &nbsp;·&nbsp; WORCESTER, MA
+  </div>
+
+  <div class="grid md:grid-cols-[auto_1fr] gap-16 items-center">
+    <div class="portrait-wrap">
+      <div class="orbit-marker"></div>
+      <img
+        class="portrait"
+        src="/img/profile.png"
+        alt="Christopher Magana"
+        width="220"
+        height="220"
+      />
+    </div>
+
+    <div>
+      <h1 class="hero-title text-[var(--white)] text-6xl md:text-8xl mb-6">
+        Christopher<br /><span class="lastname">Magana.</span>
+      </h1>
+      <p
+        class="text-xl md:text-2xl text-[var(--muted)] max-w-2xl mb-8 font-light leading-relaxed"
+      >
+        Software engineer building resilient systems — from embedded robotics to
+        production-scale infrastructure.
+      </p>
+      <div class="flex flex-wrap gap-2 mb-10">
+        {skills.map((skill) => <span class="chip">{skill}</span>)}
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <a class="btn" href="/resume">Download Resume</a>
+        <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>

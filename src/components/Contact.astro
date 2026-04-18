@@ -1,0 +1,49 @@
+---
+const channels = [
+  {
+    label: "EMAIL",
+    title: "cmagana.inbox@gmail.com",
+    caption: "direct line ↗",
+    href: "mailto:cmagana.inbox@gmail.com",
+    breakAll: true,
+  },
+  {
+    label: "LINKEDIN",
+    title: "/in/cmaga",
+    caption: "connect ↗",
+    href: "https://www.linkedin.com/in/cmaga/",
+    breakAll: false,
+  },
+  {
+    label: "RESUME",
+    title: "Download PDF",
+    caption: "↓ resume.pdf",
+    href: "/resume",
+    breakAll: false,
+  },
+];
+---
+
+<section id="contact" class="py-24">
+  <div class="eyebrow mb-4"><span class="mark">◈</span> 05 / CONTACT</div>
+  <h2
+    class="text-4xl md:text-6xl text-[var(--white)] font-light tracking-tight mb-12"
+  >
+    Open channel.
+  </h2>
+  <div class="grid md:grid-cols-3 gap-5">
+    {
+      channels.map((c) => (
+        <a href={c.href} class="card block group">
+          <div class="card-num mb-4">{c.label}</div>
+          <div
+            class={`text-2xl text-[var(--white)] font-light mb-2 ${c.breakAll ? "break-all" : ""}`}
+          >
+            {c.title}
+          </div>
+          <div class="mono text-xs text-[var(--muted)]">{c.caption}</div>
+        </a>
+      ))
+    }
+  </div>
+</section>

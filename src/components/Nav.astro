@@ -1,0 +1,44 @@
+---
+interface Props {
+  variant?: "home" | "page";
+}
+const { variant = "home" } = Astro.props;
+---
+
+<header class="backdrop-blur-sm">
+  <div class="mx-auto max-w-6xl px-6 py-5 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 group">
+      <span
+        class="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_10px_#fbbf24]"
+      ></span>
+      <span
+        class="mono text-xs tracking-widest text-[var(--muted)] group-hover:text-[var(--white)] transition-colors"
+      >
+        C. MAGANA / INDEX
+      </span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8">
+      {
+        variant === "home" ? (
+          <>
+            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#highlights">Highlights</a>
+            <a class="nav-link" href="#interests">Interests</a>
+            <a class="nav-link" href="#mission">Mission</a>
+            <a class="nav-link" href="#contact">Contact</a>
+            <a class="nav-link active" href="/resume">Resume ↗</a>
+          </>
+        ) : (
+          <>
+            <a class="nav-link" href="/#about">About</a>
+            <a class="nav-link" href="/#highlights">Highlights</a>
+            <a class="nav-link" href="/#interests">Interests</a>
+            <a class="nav-link" href="/#mission">Mission</a>
+            <a class="nav-link" href="/#contact">Contact</a>
+            <a class="nav-link active" href="/resume">Resume</a>
+          </>
+        )
+      }
+    </nav>
+  </div>
+</header>

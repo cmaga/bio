@@ -1,0 +1,47 @@
+---
+const highlights = [
+  {
+    id: "001",
+    body: "Consistently gained the trust of peers to design, test, and implement solutions independently — demonstrating the ability to research and work with new tools and technologies effectively.",
+  },
+  {
+    id: "002",
+    body: "Invited to participate in strategic meetings typically reserved for senior roles, even as an intern.",
+  },
+  {
+    id: "003",
+    bodyHtml:
+      'Transitioned from contract work to a full role on the <span class="text-[var(--white)]">Amazon Robotics</span> team — collaborating with and learning from some of the best engineers in the world.',
+  },
+  {
+    id: "004",
+    bodyHtml:
+      'Automated a complex weekly report for the <span class="text-[var(--white)]">Massachusetts Bay Transportation Authority (MBTA)</span>, significantly improving efficiency.',
+  },
+];
+---
+
+<section id="highlights" class="py-24">
+  <div class="eyebrow mb-4"><span class="mark">◈</span> 02 / HIGHLIGHTS</div>
+  <h2
+    class="text-4xl md:text-6xl text-[var(--white)] font-light tracking-tight mb-12"
+  >
+    Selected <em class="text-[var(--amber)] not-italic font-normal"
+      >trajectory.</em
+    >
+  </h2>
+  <div class="grid md:grid-cols-2 gap-5">
+    {
+      highlights.map((h) => (
+        <div class="card">
+          <div class="card-num mb-4">HIGHLIGHT / {h.id}</div>
+          {h.bodyHtml ? (
+            <p class="text-lg leading-relaxed" set:html={h.bodyHtml} />
+          ) : (
+            <p class="text-lg leading-relaxed">{h.body}</p>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</section>
