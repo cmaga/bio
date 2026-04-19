@@ -16,7 +16,19 @@ yarn-error.log*
 # Editor
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea/
+
+# LaTeX scratch (resume build artifacts)
+resume/output/
+resume/**/*.aux
+resume/**/*.fdb_latexmk
+resume/**/*.fls
+resume/**/*.log
+resume/**/*.out
+resume/**/*.synctex.gz
+resume/**/*.toc
+resume/indent.log
 
 # OS
 .DS_Store

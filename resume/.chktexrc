@@ -1,0 +1,16 @@
+
+# Suppress warnings that are noisy in resume-style LaTeX
+# 1  - Command terminated with space
+# 8  - Wrong length of dash may have been used
+# 36 - You should put a space in front of/after parenthesis
+# 44 - User Regex
+VerbosityLevel = 1
+
+# Disable specific warnings
+Silent
+{
+  1
+  8
+  36
+  44
+}

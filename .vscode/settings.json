@@ -1,0 +1,56 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%/output",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoClean.run": "onFailed",
+  "latex-workshop.latex.clean.subfolder.enabled": true,
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.recipe.default": "latexmk-and-deploy",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk-and-deploy",
+      "tools": ["latexmk", "deploy-to-public"]
+    },
+    {
+      "name": "latexmk",
+      "tools": ["latexmk"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOC%"
+      ],
+      "env": {
+        "PATH": "/Library/TeX/texbin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
+    },
+    {
+      "name": "deploy-to-public",
+      "command": "cp",
+      "args": [
+        "output/%DOCFILE%.pdf",
+        "../public/resume.pdf"
+      ]
+    }
+  ],
+  "latex-workshop.linting.chktex.enabled": true,
+  "latex-workshop.linting.chktex.exec.path": "/Library/TeX/texbin/chktex",
+  "latex-workshop.linting.run": "onType",
+  "latex-workshop.latexindent.path": "/opt/homebrew/bin/latexindent",
+  "latex-workshop.formatting.latex": "latexindent",
+  "[latex]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "James-Yu.latex-workshop",
+    "editor.wordWrap": "on",
+    "editor.wrappingIndent": "indent"
+  },
+  "files.associations": {
+    "*.tex": "latex"
+  }
+}
