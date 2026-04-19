@@ -40,17 +40,24 @@ html, body {
 
 body {
   background:
+    /* nebula: faint blue cloud, upper-left */
+    radial-gradient(ellipse 80% 60% at 18% 12%, rgb(96 165 250 / 0.10), transparent 60%),
+    /* nebula: faint violet haze, mid-right */
+    radial-gradient(ellipse 60% 50% at 85% 45%, rgb(139 92 246 / 0.05), transparent 65%),
+    /* nebula: warm amber cloud, lower */
+    radial-gradient(ellipse 70% 55% at 75% 108%, rgb(245 158 11 / 0.06), transparent 55%),
+    /* core glows (original) */
     radial-gradient(ellipse at 20% -10%, rgb(96 165 250 / 0.12), transparent 50%),
     radial-gradient(ellipse at 80% 110%, rgb(245 158 11 / 0.06), transparent 50%),
     radial-gradient(ellipse at 50% 50%, #050912, var(--bg-deep) 70%);
   min-height: 100vh;
 }
 
-/* Starfield overlay */
+/* Starfield overlay — primary layer */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: -5%;
   pointer-events: none;
   background-image:
     radial-gradient(1px 1px at 20% 30%, white, transparent),
@@ -66,6 +73,47 @@ body::before {
   background-size: 1200px 800px;
   opacity: 0.6;
   z-index: 1;
+  animation: twinkle 6s ease-in-out infinite, drift 180s linear infinite;
+}
+
+/* Starfield overlay — secondary parallax layer (smaller, denser, slower) */
+html::after {
+  content: "";
+  position: fixed;
+  inset: -5%;
+  pointer-events: none;
+  background-image:
+    radial-gradient(0.5px 0.5px at 12% 8%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(0.5px 0.5px at 38% 22%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 55% 12%, rgba(200, 220, 255, 0.6), transparent),
+    radial-gradient(0.5px 0.5px at 72% 35%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(0.5px 0.5px at 88% 62%, rgba(255, 240, 220, 0.5), transparent),
+    radial-gradient(0.5px 0.5px at 25% 55%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 48% 78%, rgba(220, 230, 255, 0.6), transparent),
+    radial-gradient(0.5px 0.5px at 65% 92%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(0.5px 0.5px at 8% 75%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(0.5px 0.5px at 92% 18%, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 900px 600px;
+  opacity: 0.45;
+  z-index: 1;
+  animation: twinkle-slow 9s ease-in-out infinite, drift-slow 320s linear infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 0.45; }
+}
+@keyframes twinkle-slow {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 0.3; }
+}
+@keyframes drift {
+  from { background-position: 0 0; }
+  to   { background-position: 1200px 800px; }
+}
+@keyframes drift-slow {
+  from { background-position: 0 0; }
+  to   { background-position: -900px 600px; }
 }
 
 /* Subtle grain */
@@ -257,5 +305,7 @@ main, header, footer, nav { position: relative; z-index: 10; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .orbit-marker { animation: none; }
+  .orbit-marker,
+  body::before,
+  html::after { animation: none; }
 }
