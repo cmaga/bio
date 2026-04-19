@@ -53,11 +53,15 @@ body {
   min-height: 100vh;
 }
 
-/* Starfield overlay — primary layer */
+/* Starfield overlay — primary layer.
+   Oversized by one tile (1200x800) so transform drift never reveals edge gaps. */
 body::before {
   content: "";
   position: fixed;
-  inset: -5%;
+  top: -800px;
+  right: 0;
+  bottom: 0;
+  left: -1200px;
   pointer-events: none;
   background-image:
     radial-gradient(1px 1px at 20% 30%, white, transparent),
@@ -71,16 +75,22 @@ body::before {
     radial-gradient(1px 1px at 5% 90%, rgba(255, 255, 255, 0.5), transparent),
     radial-gradient(1.5px 1.5px at 95% 40%, rgba(255, 255, 255, 0.7), transparent);
   background-size: 1200px 800px;
+  background-repeat: repeat;
   opacity: 0.6;
   z-index: 1;
+  will-change: transform, opacity;
   animation: twinkle 6s ease-in-out infinite, drift 180s linear infinite;
 }
 
-/* Starfield overlay — secondary parallax layer (smaller, denser, slower) */
+/* Starfield overlay — secondary parallax layer (smaller, denser, slower).
+   Oversized by one tile (900x600) in the drift direction. */
 html::after {
   content: "";
   position: fixed;
-  inset: -5%;
+  top: -600px;
+  right: -900px;
+  bottom: 0;
+  left: 0;
   pointer-events: none;
   background-image:
     radial-gradient(0.5px 0.5px at 12% 8%, rgba(255, 255, 255, 0.7), transparent),
@@ -94,8 +104,10 @@ html::after {
     radial-gradient(0.5px 0.5px at 8% 75%, rgba(255, 255, 255, 0.5), transparent),
     radial-gradient(0.5px 0.5px at 92% 18%, rgba(255, 255, 255, 0.4), transparent);
   background-size: 900px 600px;
+  background-repeat: repeat;
   opacity: 0.45;
   z-index: 1;
+  will-change: transform, opacity;
   animation: twinkle-slow 9s ease-in-out infinite, drift-slow 320s linear infinite;
 }
 
@@ -107,16 +119,19 @@ html::after {
   0%, 100% { opacity: 0.45; }
   50%      { opacity: 0.3; }
 }
+/* Translate by exactly one tile so the repeating pattern loops seamlessly. */
 @keyframes drift {
-  from { background-position: 0 0; }
-  to   { background-position: 1200px 800px; }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(1200px, 800px, 0); }
 }
 @keyframes drift-slow {
-  from { background-position: 0 0; }
-  to   { background-position: -900px 600px; }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-900px, 600px, 0); }
 }
 
-/* Subtle grain */
+/* Subtle grain. mix-blend-mode removed: it forced the layer to recomposite
+   on every frame of the star drift, which dominated GPU cost. Over a dark
+   background at 0.04 opacity the visual difference is negligible. */
 body::after {
   content: "";
   position: fixed;
@@ -125,7 +140,6 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
   opacity: 0.04;
   z-index: 2;
-  mix-blend-mode: overlay;
 }
 
 main, header, footer, nav { position: relative; z-index: 10; }
