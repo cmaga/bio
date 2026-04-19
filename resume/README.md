@@ -30,7 +30,7 @@ Install the [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName
 Saving any `.tex` file in VS Code triggers the full flow. The output directory is set in `.latexmkrc` (`$out_dir = 'output';`), so the CLI doesn't need an `-outdir` flag — run from `bio/resume/`:
 
 ```sh
-latexmk -pdf 2026.tex && cp output/2026.pdf ../public/resume.pdf
+latexmk -pdf resume.tex && cp output/resume.pdf ../public/resume.pdf
 ```
 
 Clean scratch:
@@ -43,7 +43,7 @@ latexmk -C
 
 ```text
 resume/
-  2026.tex             # entry point — \input{}s the pieces below
+  resume.tex           # entry point — \input{}s the pieces below
   preamble.tex         # document class, packages, custom commands
   sections/
     header.tex         # name + contact line
@@ -59,5 +59,3 @@ resume/
 public/
   resume.pdf           # deployed artifact, served at /resume.pdf
 ```
-
-To start a new year, copy `2026.tex` to `2027.tex` and edit the `latex-workshop.latex.recipe.default` flow if you want the new year's file to be the default build target.
