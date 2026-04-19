@@ -1,3 +1,3 @@
-Personal Bio
+# Personal Bio
 
-Link: https://cmaga.github.io/bio/
+[Live Site](https://christophermagana.com)

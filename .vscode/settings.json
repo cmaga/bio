@@ -1,5 +1,7 @@
 {
   "latex-workshop.latex.outDir": "%DIR%/output",
+  "latex-workshop.latex.rootFile.useSubFile": false,
+  "latex-workshop.latex.rootFile.indicator": "\\begin{document}",
   "latex-workshop.latex.autoBuild.run": "onSave",
   "latex-workshop.latex.autoClean.run": "onFailed",
   "latex-workshop.latex.clean.subfolder.enabled": true,
