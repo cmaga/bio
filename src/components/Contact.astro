@@ -1,11 +1,11 @@
 ---
 const channels = [
   {
-    label: "EMAIL",
-    title: "cmagana.inbox@gmail.com",
+    label: "GMAIL",
+    title: "cmagana.inbox",
     caption: "direct line ↗",
     href: "mailto:cmagana.inbox@gmail.com",
-    breakAll: true,
+    breakAll: false,
   },
   {
     label: "LINKEDIN",
@@ -13,11 +13,12 @@ const channels = [
     caption: "connect ↗",
     href: "https://www.linkedin.com/in/cmaga/",
     breakAll: false,
+    external: true,
   },
   {
     label: "RESUME",
-    title: "Download PDF",
-    caption: "↓ resume.pdf",
+    title: "View",
+    caption: "resume ↗",
     href: "/resume",
     breakAll: false,
   },
@@ -34,7 +35,12 @@ const channels = [
   <div class="grid md:grid-cols-3 gap-5">
     {
       channels.map((c) => (
-        <a href={c.href} class="card block group">
+        <a
+          href={c.href}
+          class="card block group"
+          target={c.external ? "_blank" : undefined}
+          rel={c.external ? "noopener noreferrer" : undefined}
+        >
           <div class="card-num mb-4">{c.label}</div>
           <div
             class={`text-2xl text-[var(--white)] font-light mb-2 ${c.breakAll ? "break-all" : ""}`}
